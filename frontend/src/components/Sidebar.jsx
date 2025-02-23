@@ -3,6 +3,8 @@ import { FaPlus } from "react-icons/fa";
 import { FaTrashCan } from "react-icons/fa6";
 import { RxDragHandleDots2 } from "react-icons/rx";
 import { useDrag, useDrop } from "react-dnd";
+import MarkdownUsingSocket from "./MarkdownUsingSocket";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 const predefinedSections = {
   "API Reference": `## API Reference
@@ -83,6 +85,7 @@ const Sidebar = ({ setMarkdown, isImported }) => {
   const [search, setSearch] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customSection, setCustomSection] = useState("");
+  const [isSocketEditorOpen, setIsSocketEditorOpen] = useState(false);
 
   const addSection = (section) => {
     if (isImported) return; // Prevent adding sections after import
@@ -99,12 +102,12 @@ const Sidebar = ({ setMarkdown, isImported }) => {
 
   const deleteSection = (section, index) => {
     setSections(sections.filter((s, i) => i !== index)); // Remove from UI
-  
+
     setMarkdown((prev) => {
       const sectionRegex = new RegExp(
         `(^|\\n)## ${section}.*?(?=(\\n## |$))`,
         "gs"
-      );  
+      );
       return prev.replace(sectionRegex, "").trim();
     });
   };
@@ -243,6 +246,31 @@ const Sidebar = ({ setMarkdown, isImported }) => {
                 Add
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Button to open Markdown Editor using Socket */}
+      <button
+        className="w-full bg-blue-600 text-white font-medium py-2 rounded mt-4 hover:bg-blue-700"
+        onClick={() => setIsSocketEditorOpen(true)}
+      >
+        Editor Using Socket
+      </button>
+
+      {/* Popup for MarkdownUsingSocket Component */}
+      {isSocketEditorOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-4 rounded-md shadow-md w-2/3">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold">Live Markdown Editor</h3>
+              
+                <IoMdCloseCircleOutline color="red"  size={25}
+                onClick={() => setIsSocketEditorOpen(false)}
+                />
+              
+            </div>
+            <MarkdownUsingSocket />
           </div>
         </div>
       )}
