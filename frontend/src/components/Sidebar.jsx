@@ -98,12 +98,13 @@ const Sidebar = ({ setMarkdown, isImported }) => {
   };
 
   const deleteSection = (section, index) => {
-    setSections(sections.filter((s, i) => i !== index)); // Remove based on index
+    setSections(sections.filter((s, i) => i !== index)); // Remove from UI
+  
     setMarkdown((prev) => {
       const sectionRegex = new RegExp(
-        `(^|\\n)(## ${section}\\n[\\s\\S]*?)(?=(\\n# |$))`,
-        "g"
-      );
+        `(^|\\n)## ${section}.*?(?=(\\n## |$))`,
+        "gs"
+      );  
       return prev.replace(sectionRegex, "").trim();
     });
   };
