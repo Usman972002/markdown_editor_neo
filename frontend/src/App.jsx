@@ -58,11 +58,11 @@ function App() {
 
   return (
     <div className="h-screen flex ">
-      <div className={`flex flex-col flex-grow max-[1050px]:hidden`}>
+      <div className={`flex flex-col flex-grow w-full`}>
         <header className="flex justify-between items-center px-4 mt-4 ">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <input
-              className="bg-transparent border border-gray-200 py-2 px-3 rounded-md focus:outline-none"
+              className="bg-transparent border border-gray-200 py-2 px-3 rounded-md focus:outline-none w-32 sm:w-48"
               value={documentName}
               onChange={(e) => {
                 setDocumentName(e.target.value);
@@ -70,7 +70,7 @@ function App() {
               }}
             />
             <button
-              className="bg-neutral-700 hover:bg-neutral-950 text-white font-medium text-base py-2 px-4 rounded-md"
+              className="bg-neutral-700 hover:bg-neutral-950 text-white font-medium text-sm sm:text-base py-2 px-3 sm:px-4 rounded-md"
               onClick={() => {
                 setLastSavedName(documentName);
               }}
@@ -78,13 +78,13 @@ function App() {
               Save
             </button>
           </div>
-          <div className="flex space-x-4">
+          <div className="flex space-x-2 sm:space-x-4">
             <button
               onClick={() => handleDownload("markdown")}
-              className="flex items-center gap-1 border border-gray-200  text-neutral-700 font-semibold py-2 px-4 rounded-md hover:bg-neutral-700 hover:text-white transition-colors duration-200 ease-in-out"
+              className="flex items-center gap-1 border border-gray-200 text-neutral-700 font-semibold text-sm sm:text-base py-2 px-3 sm:px-4 rounded-md hover:bg-neutral-700 hover:text-white transition-colors duration-200 ease-in-out"
             >
-              <FiDownload />
-              Download
+              <FiDownload className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Download</span>
             </button>
 
             <input
@@ -95,18 +95,18 @@ function App() {
             />
             <label
               htmlFor="file-upload"
-              className="flex items-center gap-1 border border-gray-200  text-neutral-700 font-semibold py-2 px-4 rounded-md hover:bg-neutral-700 hover:text-white transition-colors duration-200 ease-in-out cursor-pointer"
+              className="flex items-center gap-1 border border-gray-200 text-neutral-700 font-semibold text-sm sm:text-base py-2 px-3 sm:px-4 rounded-md hover:bg-neutral-700 hover:text-white transition-colors duration-200 ease-in-out cursor-pointer"
             >
-              <LuImport className="w-5 h-5" />
-              Import
+              <LuImport className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Import</span>
             </label>
           </div>
         </header>
         <hr className="mt-4" />
-        <div className="flex gap-5">
+        <div className="flex flex-col sm:flex-row gap-4 px-4">
           <Sidebar setMarkdown={setMarkdown} isImported={isImported} />
           <div className="w-full">
-            <div className="flex flex-grow px-2 mt-2">
+            <div className="flex flex-col sm:flex-row gap-4 mt-2">
               <MarkdownEditor
                 markdown={markdown}
                 onMarkdownChange={handleMarkdownChange}
@@ -119,26 +119,19 @@ function App() {
               />
             </div>
             {/* Display stats at the bottom */}
-            <div className="px-4 py-2 border-t border-gray-200 flex items-center justify-between">
-              <p className="text-base border border-gray-200 rounded-md px-2 py-1">
+            <div className="px-4 py-2 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-2">
+              <p className="text-sm sm:text-base border border-gray-200 rounded-md px-2 py-1">
                 Lines: {lineCount}
               </p>
-              <p className="text-base border border-gray-200 rounded-md px-2 py-1">
+              <p className="text-sm sm:text-base border border-gray-200 rounded-md px-2 py-1">
                 Words: {wordCount}
               </p>
-              <p className="text-base border border-gray-200 rounded-md px-2 py-1">
+              <p className="text-sm sm:text-base border border-gray-200 rounded-md px-2 py-1">
                 Characters: {charCount}
               </p>
             </div>
           </div>
         </div>
-      </div>
-      {/* Mobile View */}
-      <div className="min-[1050px]:hidden flex items-center justify-center min-h-screen bg-gray-100 text-center w-full">
-        <p className="text-gray-800 text-lg font-medium">
-          This application is only available on desktop. Please switch to a
-          larger screen to view the content.
-        </p>
       </div>
     </div>
   );

@@ -171,7 +171,7 @@ const Sidebar = ({ setMarkdown, isImported }) => {
   };
 
   return (
-    <div className="w-1/4 p-4 border-r border-gray-300 h-[90vh] overflow-y-auto">
+    <div className="w-full sm:w-1/4 p-4 border-r border-gray-300 h-[90vh] overflow-y-auto">
       <h4 className="font-semibold text-neutral-700 text-lg mb-2">Sections</h4>
       <ul className="flex flex-col gap-2">
         {sections.length > 0 ? (
@@ -223,7 +223,7 @@ const Sidebar = ({ setMarkdown, isImported }) => {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-4 rounded-md shadow-md w-1/3">
+          <div className="bg-white p-4 rounded-md shadow-md w-full sm:w-1/3">
             <h3 className="text-lg font-semibold mb-2">Enter Section Name</h3>
             <input
               type="text"
@@ -261,7 +261,7 @@ const Sidebar = ({ setMarkdown, isImported }) => {
       {/* Popup for MarkdownUsingSocket Component */}
       {isSocketEditorOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-4 rounded-md shadow-md w-2/3">
+          <div className="bg-white p-4 rounded-md shadow-md w-full sm:w-2/3">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold">Live Markdown Editor</h3>
               

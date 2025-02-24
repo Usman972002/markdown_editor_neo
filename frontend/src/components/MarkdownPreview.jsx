@@ -22,7 +22,7 @@ const MarkdownPreview = ({ markdown, isHtmlPreview, setIsHtmlPreview }) => {
     });
   };
   return (
-    <div className=" w-1/2 p-2 ">
+    <div className="w-full sm:w-1/2 p-2 ">
       <div className="flex items-center gap-3">
         <button
           onClick={() => setIsHtmlPreview(false)}
@@ -43,7 +43,7 @@ const MarkdownPreview = ({ markdown, isHtmlPreview, setIsHtmlPreview }) => {
       </div>
       <div
         id="preview-content"
-        className="h-[450px] bg-white p-4 shadow rounded overflow-auto border border-gray-300 mt-1"
+        className="h-[300px] sm:h-[450px] bg-white p-4 shadow rounded overflow-auto border border-gray-300 mt-1"
       >
         {isHtmlPreview ? (
           <pre className="whitespace-pre-wrap text-sm relative">
